@@ -1,0 +1,863 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>AI GitHub 趋势报告</title>
+  <meta name="description" content="GitHub AI 项目星数增长趋势、重点项目和技术判断。">
+  <style>
+    :root {
+      --ink: #111315;
+      --paper: #f3f5f2;
+      --panel: #ffffff;
+      --night: #101214;
+      --muted: #68746d;
+      --line: #d8ded8;
+      --lime: #bdff5b;
+      --coral: #ff665c;
+      --cyan: #43d3ff;
+      --amber: #ffc64c;
+      --rose: #ff74b6;
+      --violet: #ae8bff;
+      --green-soft: #e7f7d3;
+      --shadow: 0 18px 55px rgba(17, 19, 21, .14);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      background:
+        linear-gradient(90deg, rgba(67, 211, 255, .12) 1px, transparent 1px),
+        linear-gradient(180deg, rgba(255, 102, 92, .08) 1px, transparent 1px),
+        var(--paper);
+      background-size: 64px 64px;
+      color: var(--ink);
+      font-family: "Aptos", "Segoe UI", sans-serif;
+      letter-spacing: 0;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .topbar {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 18px;
+      min-height: 64px;
+      padding: 14px 26px;
+      background: rgba(243, 245, 242, .84);
+      border-bottom: 1px solid rgba(17, 19, 21, .12);
+      backdrop-filter: blur(16px);
+    }
+
+    .brand {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      min-width: 0;
+      font-family: "Bahnschrift", "Segoe UI", sans-serif;
+      font-size: 18px;
+      font-weight: 800;
+    }
+
+    .brand-mark {
+      width: 34px;
+      height: 34px;
+      border: 2px solid var(--ink);
+      background:
+        linear-gradient(135deg, var(--lime), var(--cyan) 52%, var(--coral));
+      box-shadow: 4px 4px 0 var(--ink);
+      transform: rotate(-3deg);
+    }
+
+    .navlinks {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+    }
+
+    .navlinks a {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 38px;
+      padding: 0 14px;
+      border: 1px solid rgba(17, 19, 21, .16);
+      background: rgba(255, 255, 255, .74);
+      font-size: 14px;
+      font-weight: 700;
+      transition: transform .2s ease, background .2s ease, border-color .2s ease;
+    }
+
+    .navlinks a:hover {
+      transform: translateY(-2px);
+      background: var(--lime);
+      border-color: var(--ink);
+    }
+
+    .hero {
+      position: relative;
+      min-height: 520px;
+      height: 76vh;
+      max-height: 700px;
+      overflow: hidden;
+      background: var(--night);
+      color: #f6f7ef;
+      isolation: isolate;
+    }
+
+    .hero img {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      opacity: .9;
+      filter: saturate(1.1) contrast(1.05);
+      transform: scale(1.02);
+    }
+
+    .hero::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        linear-gradient(90deg, rgba(16, 18, 20, .86) 0%, rgba(16, 18, 20, .62) 42%, rgba(16, 18, 20, .22) 100%),
+        linear-gradient(0deg, rgba(16, 18, 20, .92) 0%, rgba(16, 18, 20, .08) 46%);
+      z-index: 1;
+      pointer-events: none;
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      gap: 22px;
+      width: min(1180px, calc(100% - 42px));
+      height: 100%;
+      margin: 0 auto;
+      padding: 64px 0 58px;
+    }
+
+    .eyebrow {
+      width: fit-content;
+      padding: 8px 12px;
+      border: 1px solid rgba(246, 247, 239, .22);
+      background: rgba(16, 18, 20, .54);
+      color: var(--lime);
+      font-size: 13px;
+      font-weight: 800;
+    }
+
+    h1 {
+      max-width: 820px;
+      margin: 0;
+      font-family: "Bahnschrift", "Segoe UI", sans-serif;
+      font-size: 72px;
+      line-height: .96;
+      font-weight: 900;
+      letter-spacing: 0;
+    }
+
+    .hero-copy {
+      max-width: 720px;
+      margin: 0;
+      color: rgba(246, 247, 239, .82);
+      font-size: 20px;
+      line-height: 1.6;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 48px;
+      padding: 0 18px;
+      border: 2px solid #f6f7ef;
+      background: #f6f7ef;
+      color: var(--ink);
+      font-weight: 900;
+      box-shadow: 5px 5px 0 var(--lime);
+      transition: transform .2s ease, box-shadow .2s ease;
+    }
+
+    .button:hover {
+      transform: translate(-2px, -2px);
+      box-shadow: 8px 8px 0 var(--coral);
+    }
+
+    .button.secondary {
+      background: transparent;
+      color: #f6f7ef;
+      box-shadow: 5px 5px 0 rgba(67, 211, 255, .65);
+    }
+
+    .ticker {
+      overflow: hidden;
+      border-block: 2px solid var(--ink);
+      background: var(--lime);
+      color: var(--ink);
+      font-family: "Bahnschrift", "Segoe UI", sans-serif;
+      font-size: 18px;
+      font-weight: 900;
+      white-space: nowrap;
+    }
+
+    .ticker-track {
+      display: inline-flex;
+      gap: 32px;
+      min-width: max-content;
+      padding: 14px 0;
+      animation: ticker 22s linear infinite;
+    }
+
+    .ticker-track span::before {
+      content: "/";
+      margin-right: 32px;
+      color: var(--coral);
+    }
+
+    main {
+      overflow: hidden;
+    }
+
+    .section {
+      width: min(1180px, calc(100% - 42px));
+      margin: 0 auto;
+      padding: 72px 0;
+    }
+
+    .section-title {
+      display: flex;
+      align-items: end;
+      justify-content: space-between;
+      gap: 22px;
+      margin-bottom: 24px;
+    }
+
+    h2 {
+      margin: 0;
+      font-family: "Bahnschrift", "Segoe UI", sans-serif;
+      font-size: 42px;
+      line-height: 1.05;
+      letter-spacing: 0;
+    }
+
+    .section-title p {
+      max-width: 520px;
+      margin: 0;
+      color: var(--muted);
+      font-size: 16px;
+      line-height: 1.55;
+    }
+
+    .metrics {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 12px;
+    }
+
+    .metric {
+      min-height: 150px;
+      padding: 20px;
+      border: 2px solid var(--ink);
+      background: var(--panel);
+      box-shadow: 7px 7px 0 rgba(17, 19, 21, .9);
+      animation: rise .7s ease both;
+    }
+
+    .metric:nth-child(2) {
+      animation-delay: .08s;
+      background: #e8fbff;
+    }
+
+    .metric:nth-child(3) {
+      animation-delay: .16s;
+      background: #fff1f0;
+    }
+
+    .metric:nth-child(4) {
+      animation-delay: .24s;
+      background: #fff7d9;
+    }
+
+    .metric strong {
+      display: block;
+      margin-bottom: 16px;
+      font-family: "Bahnschrift", "Segoe UI", sans-serif;
+      font-size: 44px;
+      line-height: .9;
+    }
+
+    .metric span {
+      color: var(--muted);
+      font-size: 14px;
+      font-weight: 800;
+      text-transform: uppercase;
+    }
+
+    .tabs {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 20px;
+    }
+
+    .tab {
+      min-height: 42px;
+      padding: 0 16px;
+      border: 2px solid var(--ink);
+      background: var(--panel);
+      color: var(--ink);
+      font: inherit;
+      font-weight: 900;
+      cursor: pointer;
+      transition: background .2s ease, transform .2s ease;
+    }
+
+    .tab:hover,
+    .tab[aria-selected="true"] {
+      background: var(--ink);
+      color: #f6f7ef;
+      transform: translateY(-2px);
+    }
+
+    .project-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 16px;
+    }
+
+    .project {
+      position: relative;
+      display: grid;
+      grid-template-columns: 74px 1fr;
+      gap: 18px;
+      min-height: 220px;
+      padding: 20px;
+      border: 2px solid var(--ink);
+      background: var(--panel);
+      box-shadow: var(--shadow);
+      overflow: hidden;
+      animation: rise .7s ease both;
+    }
+
+    .project::after {
+      content: "";
+      position: absolute;
+      inset: auto 0 0;
+      height: 8px;
+      background: linear-gradient(90deg, var(--lime), var(--cyan), var(--coral), var(--amber));
+      transform: scaleX(var(--bar));
+      transform-origin: left;
+      animation: meter 1.15s cubic-bezier(.2, .85, .2, 1) both;
+    }
+
+    .rank {
+      display: grid;
+      place-items: center;
+      width: 64px;
+      height: 64px;
+      border: 2px solid var(--ink);
+      background: var(--green-soft);
+      font-family: "Bahnschrift", "Segoe UI", sans-serif;
+      font-size: 26px;
+      font-weight: 900;
+      box-shadow: 4px 4px 0 var(--ink);
+    }
+
+    .project h3 {
+      margin: 2px 0 8px;
+      font-family: "Bahnschrift", "Segoe UI", sans-serif;
+      font-size: 24px;
+      line-height: 1.15;
+      letter-spacing: 0;
+    }
+
+    .project p {
+      margin: 0 0 16px;
+      color: #3d4741;
+      line-height: 1.55;
+    }
+
+    .meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .chip {
+      padding: 7px 9px;
+      border: 1px solid rgba(17, 19, 21, .18);
+      background: #eef3f0;
+      color: #26302b;
+      font-size: 13px;
+      font-weight: 850;
+    }
+
+    .chip.hot {
+      background: var(--coral);
+      color: #fff;
+      border-color: var(--coral);
+    }
+
+    .project.is-hidden {
+      display: none;
+    }
+
+    .insights {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 18px;
+    }
+
+    .insight {
+      min-height: 190px;
+      padding: 24px;
+      border: 2px solid var(--ink);
+      background: #fff;
+      box-shadow: 6px 6px 0 rgba(17, 19, 21, .88);
+    }
+
+    .insight:nth-child(2) {
+      background: #e8fbff;
+    }
+
+    .insight:nth-child(3) {
+      background: #fff1f0;
+    }
+
+    .insight:nth-child(4) {
+      background: #ecffe4;
+    }
+
+    .insight h3 {
+      margin: 0 0 10px;
+      font-family: "Bahnschrift", "Segoe UI", sans-serif;
+      font-size: 24px;
+      letter-spacing: 0;
+    }
+
+    .insight p {
+      margin: 0;
+      color: #3d4741;
+      line-height: 1.6;
+    }
+
+    .sources {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 14px;
+    }
+
+    .source {
+      min-height: 108px;
+      padding: 18px;
+      border: 1px solid var(--line);
+      background: rgba(255, 255, 255, .76);
+      font-weight: 850;
+      transition: transform .2s ease, border-color .2s ease;
+    }
+
+    .source:hover {
+      transform: translateY(-3px);
+      border-color: var(--ink);
+    }
+
+    footer {
+      padding: 34px 21px 44px;
+      border-top: 2px solid var(--ink);
+      background: var(--night);
+      color: #f6f7ef;
+      text-align: center;
+    }
+
+    @keyframes ticker {
+      from { transform: translateX(0); }
+      to { transform: translateX(-50%); }
+    }
+
+    @keyframes rise {
+      from {
+        opacity: 0;
+        transform: translateY(22px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes meter {
+      from { transform: scaleX(0); }
+      to { transform: scaleX(var(--bar)); }
+    }
+
+    @media (max-width: 860px) {
+      .topbar {
+        align-items: flex-start;
+        flex-direction: column;
+        padding-inline: 18px;
+      }
+
+      .navlinks {
+        justify-content: flex-start;
+      }
+
+      .hero {
+        height: 74vh;
+        min-height: 520px;
+      }
+
+      .hero-content {
+        width: min(100% - 32px, 680px);
+        padding-bottom: 44px;
+      }
+
+      h1 {
+        font-size: 48px;
+      }
+
+      .hero-copy {
+        font-size: 17px;
+      }
+
+      .section {
+        width: min(100% - 32px, 720px);
+        padding: 54px 0;
+      }
+
+      .section-title {
+        align-items: flex-start;
+        flex-direction: column;
+      }
+
+      .metrics,
+      .project-grid,
+      .insights,
+      .sources {
+        grid-template-columns: 1fr;
+      }
+
+      .project {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .brand {
+        font-size: 16px;
+      }
+
+      .navlinks a,
+      .button,
+      .tab {
+        width: 100%;
+      }
+
+      .hero {
+        height: 76vh;
+        min-height: 500px;
+      }
+
+      h1 {
+        font-size: 38px;
+      }
+
+      h2 {
+        font-size: 32px;
+      }
+
+      .metric strong {
+        font-size: 38px;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *,
+      *::before,
+      *::after {
+        animation-duration: .001ms !important;
+        animation-iteration-count: 1 !important;
+        scroll-behavior: auto !important;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="#top" aria-label="AI GitHub 趋势报告">
+      <span class="brand-mark" aria-hidden="true"></span>
+      <span>AI GitHub 趋势报告</span>
+    </a>
+    <nav class="navlinks" aria-label="主要链接">
+      <a href="#projects">项目</a>
+      <a href="#insights">判断</a>
+      <a href="reports/ai-github-trends/2026-06-05.md">Markdown 报告</a>
+      <a href="https://github.com/anejuxula20-ctrl/ai-skills-summarise">GitHub</a>
+    </nav>
+  </header>
+
+  <section class="hero" id="top">
+    <img src="assets/ai-github-signal-loop.gif" alt="AI GitHub 项目星数增长动图">
+    <div class="hero-content">
+      <div class="eyebrow">2026-06-05 / STAR VELOCITY</div>
+      <h1>AI GitHub 趋势报告</h1>
+      <p class="hero-copy">用动图信号、项目热度和技术判断追踪 AI agent、coding assistant、skills、安全扫描与内容生产工具的快速变化。</p>
+      <div class="hero-actions">
+        <a class="button" href="#projects">查看高增长项目</a>
+        <a class="button secondary" href="reports/ai-github-trends/2026-06-05.md">阅读完整报告</a>
+      </div>
+    </div>
+  </section>
+
+  <div class="ticker" aria-hidden="true">
+    <div class="ticker-track">
+      <span>AI agent</span>
+      <span>coding assistant</span>
+      <span>AI skills</span>
+      <span>star velocity</span>
+      <span>voice AI</span>
+      <span>skill security</span>
+      <span>knowledge graph</span>
+      <span>AI agent</span>
+      <span>coding assistant</span>
+      <span>AI skills</span>
+      <span>star velocity</span>
+      <span>voice AI</span>
+      <span>skill security</span>
+      <span>knowledge graph</span>
+    </div>
+  </div>
+
+  <main>
+    <section class="section" aria-labelledby="pulse-title">
+      <div class="section-title">
+        <h2 id="pulse-title">本轮信号</h2>
+        <p>这份报告把实时 GitHub 仓库页、AI Signal、Trendshift、TechTarget 与 AgentScout 的趋势口径合并阅读，避免只被单一榜单带节奏。</p>
+      </div>
+      <div class="metrics">
+        <article class="metric">
+          <strong>17,974</strong>
+          <span>AI repos tracked</span>
+        </article>
+        <article class="metric">
+          <strong>49</strong>
+          <span>AI topics</span>
+        </article>
+        <article class="metric">
+          <strong>+10,919</strong>
+          <span>Hermes weekly stars</span>
+        </article>
+        <article class="metric">
+          <strong>5-10</strong>
+          <span>watchlist projects</span>
+        </article>
+      </div>
+    </section>
+
+    <section class="section" id="projects" aria-labelledby="projects-title">
+      <div class="section-title">
+        <h2 id="projects-title">高增长项目</h2>
+        <p>优先展示近期 star 增长、榜单 breakout 或主题热度明显的仓库；短期热度不等于生产采用，仍需看 release、issue 和真实使用场景。</p>
+      </div>
+      <div class="tabs" role="tablist" aria-label="项目分类">
+        <button class="tab" type="button" role="tab" aria-selected="true" data-filter="all">全部</button>
+        <button class="tab" type="button" role="tab" aria-selected="false" data-filter="agent">Agent</button>
+        <button class="tab" type="button" role="tab" aria-selected="false" data-filter="content">内容</button>
+        <button class="tab" type="button" role="tab" aria-selected="false" data-filter="infra">基础设施</button>
+        <button class="tab" type="button" role="tab" aria-selected="false" data-filter="security">安全</button>
+      </div>
+      <div class="project-grid">
+        <article class="project" data-kind="content" style="--bar: 1; animation-delay: .02s;">
+          <div class="rank">01</div>
+          <div>
+            <h3><a href="https://github.com/harry0703/MoneyPrinterTurbo">MoneyPrinterTurbo</a></h3>
+            <p>用大模型自动生成短视频，覆盖脚本、素材、字幕、BGM 与合成流程，是内容生产自动化的高热样本。</p>
+            <div class="meta">
+              <span class="chip hot">约 +2.2k/wk</span>
+              <span class="chip">内容工厂</span>
+              <span class="chip">短视频</span>
+            </div>
+          </div>
+        </article>
+
+        <article class="project" data-kind="agent infra" style="--bar: .5; animation-delay: .08s;">
+          <div class="rank">02</div>
+          <div>
+            <h3><a href="https://github.com/Lum1104/Understand-Anything">Understand-Anything</a></h3>
+            <p>把代码库、知识库和文档转成可交互知识图谱，连接 Codex、Claude Code、Cursor、Copilot 等开发工作流。</p>
+            <div class="meta">
+              <span class="chip hot">约 +1.1k/wk</span>
+              <span class="chip">知识图谱</span>
+              <span class="chip">代码理解</span>
+            </div>
+          </div>
+        </article>
+
+        <article class="project" data-kind="agent" style="--bar: .34; animation-delay: .14s;">
+          <div class="rank">03</div>
+          <div>
+            <h3><a href="https://github.com/NousResearch/hermes-agent">Hermes Agent</a></h3>
+            <p>完整 agent 平台，覆盖 CLI、UI、skills、tools、providers 和 gateway；AgentScout 曾统计一周新增 10,919 stars。</p>
+            <div class="meta">
+              <span class="chip hot">约 +758/wk</span>
+              <span class="chip">Agent 平台</span>
+              <span class="chip">Skills</span>
+            </div>
+          </div>
+        </article>
+
+        <article class="project" data-kind="agent" style="--bar: .24; animation-delay: .2s;">
+          <div class="rank">04</div>
+          <div>
+            <h3><a href="https://github.com/PatterAI/Patter">Patter</a></h3>
+            <p>开源 voice-AI SDK，把 AI agent 接入电话网络，支持多种 STT、TTS、realtime provider 和电话服务商。</p>
+            <div class="meta">
+              <span class="chip hot">+523.3% breakout</span>
+              <span class="chip">语音 Agent</span>
+              <span class="chip">电话网络</span>
+            </div>
+          </div>
+        </article>
+
+        <article class="project" data-kind="content agent" style="--bar: .31; animation-delay: .26s;">
+          <div class="rank">05</div>
+          <div>
+            <h3><a href="https://github.com/op7418/guizang-social-card-skill">guizang-social-card-skill</a></h3>
+            <p>面向 Claude Code/Codex 的社媒图文技能包，用单文件 HTML 和 Playwright 生成小红书图文与公众号封面。</p>
+            <div class="meta">
+              <span class="chip hot">+4885.1% breakout</span>
+              <span class="chip">AI skills</span>
+              <span class="chip">设计交付</span>
+            </div>
+          </div>
+        </article>
+
+        <article class="project" data-kind="security agent" style="--bar: .2; animation-delay: .32s;">
+          <div class="rank">06</div>
+          <div>
+            <h3><a href="https://github.com/NVIDIA/SkillSpector">SkillSpector</a></h3>
+            <p>扫描 AI agent skills 的漏洞、恶意模式和安全风险，显示第三方技能安装正在进入供应链安全视野。</p>
+            <div class="meta">
+              <span class="chip hot">+674.6% breakout</span>
+              <span class="chip">技能安全</span>
+              <span class="chip">供应链</span>
+            </div>
+          </div>
+        </article>
+
+        <article class="project" data-kind="infra agent" style="--bar: .37; animation-delay: .38s;">
+          <div class="rank">07</div>
+          <div>
+            <h3><a href="https://github.com/esengine/DeepSeek-Reasonix">DeepSeek-Reasonix</a></h3>
+            <p>面向 DeepSeek 的终端 AI coding agent，强调 prefix-cache 稳定性、长期运行与低成本开发体验。</p>
+            <div class="meta">
+              <span class="chip hot">约 +563/wk</span>
+              <span class="chip">Coding Agent</span>
+              <span class="chip">本地优化</span>
+            </div>
+          </div>
+        </article>
+
+        <article class="project" data-kind="infra" style="--bar: .36; animation-delay: .44s;">
+          <div class="rank">08</div>
+          <div>
+            <h3><a href="https://github.com/D4Vinci/Scrapling">Scrapling</a></h3>
+            <p>自适应 Web scraping 框架，可作为研究自动化、网页检索和数据采集 agent 的底层信息获取能力。</p>
+            <div class="meta">
+              <span class="chip hot">约 +811/wk</span>
+              <span class="chip">数据采集</span>
+              <span class="chip">Web agent</span>
+            </div>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section class="section" id="insights" aria-labelledby="insights-title">
+      <div class="section-title">
+        <h2 id="insights-title">技术判断</h2>
+        <p>高 star velocity 是早期信号，不是采购结论；更适合用来发现主题迁移、生态入口和需要提前防守的风险。</p>
+      </div>
+      <div class="insights">
+        <article class="insight">
+          <h3>Agent 变成能力栈</h3>
+          <p>Hermes、ECC 和 skills 类仓库的增长说明开发者正在把 agent 当作可扩展运行时，而不是单一聊天机器人。</p>
+        </article>
+        <article class="insight">
+          <h3>内容工具继续吸星</h3>
+          <p>短视频、社媒卡片和封面生成把 AI 输出直接连接到可发布产物，热度来自非常明确的交付价值。</p>
+        </article>
+        <article class="insight">
+          <h3>代码理解是底座</h3>
+          <p>大型代码库与知识库的图谱化、可问答化正在成为 agent 真正进入工程工作的基础能力。</p>
+        </article>
+        <article class="insight">
+          <h3>技能安全会升温</h3>
+          <p>agent skills 可能影响文件、命令和外部服务访问，安装前审计、白名单和沙箱会越来越重要。</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="section" aria-labelledby="sources-title">
+      <div class="section-title">
+        <h2 id="sources-title">来源</h2>
+        <p>报告基于公开趋势榜单与仓库页面交叉整理，后续自动化可接入 GitHub API 或 GH Archive 做更硬的 24h/7d 排序。</p>
+      </div>
+      <div class="sources">
+        <a class="source" href="https://www.aisignal.dev/">AI Signal Dashboard</a>
+        <a class="source" href="https://trendshift.io/topics">Trendshift Topics</a>
+        <a class="source" href="https://www.techtarget.com/searchapparchitecture/tip/What-repos-are-trending-on-GitHub">TechTarget Trending Repos</a>
+        <a class="source" href="https://agentscout.live/tech/ai-agents/data/github-agent-stars-tracker-20260525/">AgentScout Stars Tracker</a>
+        <a class="source" href="https://moclaw.ai/blog/top-ai-agent-repos-2026">MoClaw AI Agent Repos</a>
+        <a class="source" href="reports/ai-github-trends/2026-06-05.md">完整 Markdown 报告</a>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <strong>AI GitHub Trend Pulse</strong>
+    <span> · 自动化趋势报告 · anejuxula20-ctrl/ai-skills-summarise</span>
+  </footer>
+
+  <script>
+    const tabs = document.querySelectorAll(".tab");
+    const projects = document.querySelectorAll(".project");
+
+    tabs.forEach((tab) => {
+      tab.addEventListener("click", () => {
+        const filter = tab.dataset.filter;
+        tabs.forEach((item) => item.setAttribute("aria-selected", String(item === tab)));
+        projects.forEach((project) => {
+          const kinds = project.dataset.kind.split(" ");
+          project.classList.toggle("is-hidden", filter !== "all" && !kinds.includes(filter));
+        });
+      });
+    });
+  </script>
+</body>
+</html>
