@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 540" role="img" aria-labelledby="title desc">
+  <title id="title">AI GitHub Trend Pulse</title><desc id="desc">不断移动的 AI 项目趋势脉冲</desc>
+  <rect width="900" height="540" fill="#17211d"/><path d="M0 405H900M0 270H900M0 135H900" stroke="#35433b" stroke-width="1"/>
+  <g fill="#d8ff45" font-family="monospace" font-weight="700"><text x="58" y="72" font-size="18">GITHUB / AI SIGNAL</text><text x="58" y="486" font-size="15">LIVE SNAPSHOT · 21 JUN 2026</text></g>
+  <path d="M0 340 L90 340 L130 290 L176 365 L238 210 L300 340 L365 340 L410 270 L458 380 L530 155 L590 340 L660 340 L712 255 L760 320 L900 320" fill="none" stroke="#2fe0c2" stroke-width="9" stroke-linejoin="round" stroke-linecap="round">
+    <animate attributeName="stroke-dasharray" values="0 1500;1500 0;1500 0" dur="4s" repeatCount="indefinite"/>
+  </path>
+  <circle cx="530" cy="155" r="15" fill="#ff7467"><animate attributeName="r" values="11;22;11" dur="1.2s" repeatCount="indefinite"/></circle>
+  <g fill="#f8f6ef" font-family="Impact, sans-serif"><text x="58" y="165" font-size="66">SIGNAL</text><text x="58" y="228" font-size="66">OVER NOISE</text></g>
+  <g fill="#d8ff45" font-family="monospace" font-size="16"><text x="600" y="120">AGENTS</text><text x="600" y="145">MCP</text><text x="600" y="170">WORKFLOWS</text></g>
+</svg>

@@ -1,15 +1,15 @@
 # AI GitHub 趋势报告
 
-![AI GitHub Trend Pulse](assets/ai-github-signal-loop.gif)
+![AI GitHub Trend Pulse](assets/ai-github-pulse.svg)
 
-这是一份面向 AI GitHub 热点项目的自动化趋势报告，优先关注近期 star 增长、榜单 breakout、AI agent、coding assistant、AI skills、内容生成与技能安全方向。
+面向 AI 开源项目的可核查趋势快报：结合 GitHub 当日 API 快照、项目 README 和近期维护活动，重点看 agent、工作流平台、MCP 与浏览器自动化。
 
-- 动态网页：[index.html](index.html)
-- 最新报告：[reports/ai-github-trends/2026-06-05.md](reports/ai-github-trends/2026-06-05.md)
-- GitHub Pages 地址（启用 Pages 后）：https://anejuxula20-ctrl.github.io/ai-skills-summarise/
+- 最新动态网页：[index.html](index.html)
+- 最新报告：[2026-06-21](reports/ai-github-trends/2026-06-21.md)
+- GitHub Pages（启用后）：https://anejuxula20-ctrl.github.io/ai-skills-summarise/
 
-## 本期看点
+## 本期结论
 
-- MoneyPrinterTurbo、Understand-Anything、Hermes Agent 继续占据高关注度位置。
-- AI skills 从开发辅助扩展到内容设计、社媒图文和安全审计。
-- star velocity 适合作为早期信号，但仍需要结合 issue、release、fork、真实使用场景交叉验证。
+- 高关注项目集中在编码代理、可部署工作流平台与模型/工具连接层。
+- star 是注意力信号，不是生产采纳证明；需同时检查维护、许可证、权限边界和评估数据。
+- 浏览器与 MCP 扩展了 agent 的可执行范围，也扩大了凭据、供应链和审计风险。
