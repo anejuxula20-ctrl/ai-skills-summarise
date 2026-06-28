@@ -3,31 +3,88 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="2026-06-21 AI GitHub 趋势：可核查的 star 快照、活跃信号与工程判断。">
-  <title>AI GitHub 趋势脉冲 · 2026-06-21</title>
+  <meta name="description" content="2026-06-28 AI GitHub 趋势：agent harness、个人常驻代理、工作流平台与网页数据层。">
+  <title>AI GitHub 趋势脉冲 · 2026-06-28</title>
   <style>
-    :root{--ink:#17211d;--paper:#f4f1e8;--acid:#d8ff45;--teal:#2fe0c2;--coral:#ff7467;--line:#c9c4b8;--muted:#617069}*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:radial-gradient(circle at 10% 10%,#e6ffd7 0,transparent 25rem),var(--paper);color:var(--ink);font:16px/1.65 Georgia,"Noto Serif SC",serif}.top{display:flex;justify-content:space-between;gap:18px;align-items:center;padding:18px max(5vw,24px);border-bottom:1px solid var(--line);font-family:Consolas,"Cascadia Mono",monospace}.brand{font-weight:800;letter-spacing:.08em}.top a{color:inherit;text-decoration:none;border-bottom:2px solid var(--coral)}.hero{min-height:600px;padding:70px max(5vw,24px) 56px;display:grid;grid-template-columns:1.15fr .85fr;gap:44px;align-items:center;overflow:hidden;background:#17211d;color:#f8f6ef}.kicker{font:700 13px/1 Consolas,monospace;color:var(--acid);letter-spacing:.14em}.hero h1{font:900 clamp(3.6rem,8vw,8rem)/.82 Impact,"Arial Black",sans-serif;letter-spacing:-.055em;margin:20px 0 24px;max-width:800px}.hero p{max-width:640px;color:#d8ded8;font-size:1.12rem}.actions{display:flex;flex-wrap:wrap;gap:12px;margin-top:28px}.button{display:inline-block;padding:12px 17px;background:var(--acid);color:var(--ink);font:800 14px Consolas,monospace;text-decoration:none;box-shadow:5px 5px 0 var(--coral)}.button.alt{background:transparent;color:#f8f6ef;border:1px solid #778078;box-shadow:none}.signal{width:100%;max-width:520px;justify-self:end;filter:drop-shadow(14px 14px 0 rgba(216,255,69,.88))}.marquee{overflow:hidden;background:var(--acid);border-block:2px solid var(--ink);font:800 15px Consolas,monospace;white-space:nowrap}.marquee span{display:inline-block;padding:12px 0;animation:move 25s linear infinite}.wrap{width:min(1180px,90vw);margin:auto}.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin:58px 0}.stat{padding:20px;border:2px solid var(--ink);background:#fffdf8;box-shadow:5px 5px 0 var(--ink)}.stat b{display:block;font:900 2.4rem/.9 Impact,sans-serif}.stat small{font:700 12px Consolas,monospace;color:var(--muted)}section{padding:38px 0 58px}h2{font:900 clamp(2.3rem,4vw,4rem)/.95 Impact,"Arial Black",sans-serif;letter-spacing:-.035em;margin:0 0 12px}.lede{max-width:760px;color:var(--muted)}.filters{display:flex;gap:8px;flex-wrap:wrap;margin:24px 0}.filter{border:1px solid var(--ink);background:transparent;padding:8px 11px;font:800 12px Consolas,monospace;cursor:pointer}.filter[aria-selected="true"]{background:var(--ink);color:#fff}.grid{display:grid;grid-template-columns:repeat(2,1fr);gap:16px}.card{position:relative;padding:21px 22px 24px;background:#fffdf8;border:1px solid var(--ink);min-height:240px;transition:transform .2s ease,box-shadow .2s ease}.card:hover{transform:translate(-4px,-4px);box-shadow:7px 7px 0 var(--teal)}.card.hidden{display:none}.num{font:800 12px Consolas,monospace;color:var(--coral)}.card h3{font:900 1.55rem/1.1 Impact,"Arial Black",sans-serif;margin:7px 0}.card h3 a{color:inherit}.card p{margin:0 0 15px;color:#405049}.tags{display:flex;gap:6px;flex-wrap:wrap}.tag{font:800 11px Consolas,monospace;padding:5px 7px;background:#e6f5e6}.tag.hot{background:var(--coral);color:#fff}.insights{display:grid;grid-template-columns:repeat(3,1fr);gap:15px}.insight{padding:22px;background:var(--ink);color:#f8f6ef;border-top:8px solid var(--acid)}.insight h3{font:900 1.3rem/1.1 Impact,sans-serif;margin:0 0 10px}.insight p{color:#d2d8d3;margin:0}.notes{border-left:5px solid var(--coral);padding:5px 0 5px 18px;color:#45534d}.foot{padding:28px max(5vw,24px);background:var(--ink);color:#d9e2d9;font:13px Consolas,monospace}.foot a{color:var(--acid)}@keyframes move{to{transform:translateX(-50%)}}@media(max-width:800px){.hero{grid-template-columns:1fr;min-height:auto}.signal{justify-self:start;max-width:420px}.stats,.grid,.insights{grid-template-columns:1fr 1fr}}@media(max-width:520px){.top{align-items:flex-start;flex-direction:column}.stats,.grid,.insights{grid-template-columns:1fr}.hero h1{font-size:3.5rem}}
+    :root{--ink:#101816;--paper:#f6f1df;--lime:#d6ff38;--mint:#35dfbd;--coral:#ff6d5f;--blue:#dff3ff;--line:#222d29;--muted:#596a62}*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--paper);color:var(--ink);font:16px/1.65 Georgia,"Noto Serif SC",serif}.top{position:sticky;top:0;z-index:10;display:flex;justify-content:space-between;gap:18px;align-items:center;padding:16px max(5vw,24px);border-bottom:2px solid var(--ink);background:rgba(246,241,223,.94);backdrop-filter:blur(10px);font-family:Consolas,"Cascadia Mono",monospace}.brand{font-weight:900;letter-spacing:.08em}.top a{color:inherit;text-decoration:none;border-bottom:2px solid var(--coral)}.hero{min-height:620px;padding:66px max(5vw,24px) 52px;display:grid;grid-template-columns:1.02fr .98fr;gap:44px;align-items:center;background:linear-gradient(135deg,#101816 0,#172620 58%,#26322a 100%);color:#f8f6ef;overflow:hidden}.kicker{font:800 13px/1 Consolas,monospace;color:var(--lime);letter-spacing:.14em}.hero h1{font:900 clamp(3.4rem,7.6vw,7.8rem)/.86 Impact,"Arial Black",sans-serif;letter-spacing:0;margin:20px 0 24px;max-width:830px}.hero p{max-width:700px;color:#d8ded8;font-size:1.13rem}.actions{display:flex;flex-wrap:wrap;gap:12px;margin-top:28px}.button{display:inline-block;padding:12px 17px;background:var(--lime);color:var(--ink);font:900 14px Consolas,monospace;text-decoration:none;box-shadow:5px 5px 0 var(--coral)}.button.alt{background:transparent;color:#f8f6ef;border:1px solid #778078;box-shadow:none}.signal{width:100%;max-width:560px;justify-self:end;filter:drop-shadow(12px 12px 0 rgba(255,109,95,.65))}.ticker{overflow:hidden;background:var(--lime);border-block:2px solid var(--ink);font:900 15px Consolas,monospace;white-space:nowrap}.ticker span{display:inline-block;padding:12px 0;animation:move 26s linear infinite}.wrap{width:min(1180px,90vw);margin:auto}.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin:54px 0 34px}.stat{padding:20px;border:2px solid var(--ink);background:#fffdf8;box-shadow:5px 5px 0 var(--ink)}.stat b{display:block;font:900 2.45rem/.9 Impact,sans-serif}.stat small{font:800 12px Consolas,monospace;color:var(--muted)}section{padding:34px 0 56px}h2{font:900 clamp(2.2rem,4vw,4rem)/.96 Impact,"Arial Black",sans-serif;letter-spacing:0;margin:0 0 12px}.lede{max-width:820px;color:var(--muted)}.filters{display:flex;gap:8px;flex-wrap:wrap;margin:24px 0}.filter{border:1px solid var(--ink);background:transparent;padding:8px 11px;font:900 12px Consolas,monospace;cursor:pointer}.filter[aria-selected="true"]{background:var(--ink);color:#fff}.grid{display:grid;grid-template-columns:repeat(2,1fr);gap:16px}.card{position:relative;padding:21px 22px 24px;background:#fffdf8;border:1px solid var(--ink);min-height:285px;transition:transform .2s ease,box-shadow .2s ease}.card:hover{transform:translate(-4px,-4px);box-shadow:7px 7px 0 var(--mint)}.card.hidden{display:none}.num{font:900 12px Consolas,monospace;color:var(--coral)}.card h3{font:900 1.55rem/1.1 Impact,"Arial Black",sans-serif;margin:7px 0}.card h3 a{color:inherit}.card p{margin:0 0 13px;color:#405049}.tags{display:flex;gap:6px;flex-wrap:wrap}.tag{font:900 11px Consolas,monospace;padding:5px 7px;background:#e6f5e6}.tag.hot{background:var(--coral);color:#fff}.tag.warn{background:#101816;color:#fff}.insights{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}.insight{padding:21px;background:var(--ink);color:#f8f6ef;border-top:8px solid var(--lime)}.insight h3{font:900 1.25rem/1.1 Impact,sans-serif;margin:0 0 10px}.insight p{color:#d2d8d3;margin:0}.notes{border-left:5px solid var(--coral);padding:5px 0 5px 18px;color:#45534d}.sources{columns:2;column-gap:42px;font-family:Consolas,monospace;font-size:13px}.sources a{color:var(--ink)}.foot{padding:28px max(5vw,24px);background:var(--ink);color:#d9e2d9;font:13px Consolas,monospace}.foot a{color:var(--lime)}@keyframes move{to{transform:translateX(-50%)}}@media(max-width:900px){.hero{grid-template-columns:1fr;min-height:auto}.signal{justify-self:start;max-width:520px}.stats,.grid,.insights{grid-template-columns:1fr 1fr}.sources{columns:1}}@media(max-width:560px){.top{align-items:flex-start;flex-direction:column}.stats,.grid,.insights{grid-template-columns:1fr}.hero h1{font-size:3.35rem}.hero{padding-top:42px}}
   </style>
 </head>
 <body>
-  <header class="top"><span class="brand">AI / GITHUB / PULSE</span><span>2026.06.21 · <a href="reports/ai-github-trends/2026-06-21.md">完整报告</a></span></header>
+  <header class="top"><span class="brand">AI / GITHUB / PULSE</span><span>2026.06.28 · <a href="reports/ai-github-trends/2026-06-28.md">完整报告</a></span></header>
   <main>
-    <section class="hero"><div><div class="kicker">WEEKLY FIELD NOTES · ASIA/SHANGHAI</div><h1>不是榜单。<br>是信号。</h1><p>以 GitHub API 的当日可核查快照为底，筛选持续活跃、开发者注意力集中的 AI 项目。星标不是采购结论；提交节奏、接口边界和治理质量才是下一步验证重点。</p><div class="actions"><a class="button" href="#projects">查看 8 个项目</a><a class="button alt" href="reports/ai-github-trends/2026-06-21.md">阅读 Markdown 报告</a></div></div><img class="signal" src="assets/ai-github-pulse.svg" alt="AI GitHub 趋势脉冲动态图"></section>
-    <div class="marquee"><span>● OPEN SOURCE AGENTS　● MCP APPLICATIONS　● LOCAL-FIRST WORKFLOWS　● RESEARCH AUTOMATION　● GOVERNANCE BEFORE AUTONOMY　　● OPEN SOURCE AGENTS　● MCP APPLICATIONS　● LOCAL-FIRST WORKFLOWS　● RESEARCH AUTOMATION　● GOVERNANCE BEFORE AUTONOMY　　</span></div>
-    <div class="wrap"><section><div class="stats"><div class="stat"><b>8</b><small>本期重点项目</small></div><div class="stat"><b>3</b><small>主要主题簇</small></div><div class="stat"><b>146k</b><small>最大样本 star</small></div><div class="stat"><b>21 JUN</b><small>API 快照日期</small></div></div><h2>本轮读数</h2><p class="lede">注意力正在从“单一聊天入口”向三类可落地能力迁移：编码代理的执行闭环、MCP 的应用连接层、可观测且可部署的工作流平台。</p></section>
-      <section id="projects"><h2>值得跟进</h2><p class="lede">star 为 GitHub REST API 于 2026-06-21 获取的快照；“近期信号”采用近 48 小时推送、持续维护或明确的生态位置，未声称不可复核的增星速率。</p><div class="filters" role="tablist"><button class="filter" aria-selected="true" data-filter="all">全部</button><button class="filter" aria-selected="false" data-filter="agent">Agent</button><button class="filter" aria-selected="false" data-filter="platform">平台</button><button class="filter" aria-selected="false" data-filter="infra">基础设施</button></div><div class="grid">
-        <article class="card" data-type="agent"><span class="num">01 / CODING AGENT</span><h3><a href="https://github.com/openai/codex">OpenAI Codex</a></h3><p>终端优先的轻量编码代理。高 star 与 6 月 21 日仍有推送，代表“可审计执行”而非仅补全的工程入口。</p><div class="tags"><span class="tag hot">92,401 ★</span><span class="tag">当日活跃</span></div></article>
-        <article class="card" data-type="agent"><span class="num">02 / CODING AGENT</span><h3><a href="https://github.com/google-gemini/gemini-cli">Gemini CLI</a></h3><p>把 Gemini 直接带到命令行，已形成大型开发者入口。重点观察权限模型、上下文控制和工具调用稳定性。</p><div class="tags"><span class="tag hot">105,460 ★</span><span class="tag">当日活跃</span></div></article>
-        <article class="card" data-type="platform"><span class="num">03 / WORKFLOW PLATFORM</span><h3><a href="https://github.com/langgenius/dify">Dify</a></h3><p>面向 agentic workflow 的生产平台。价值在于把提示、工作流、评估与发布连成可运营产品，而非只提供模型接入。</p><div class="tags"><span class="tag hot">146,015 ★</span><span class="tag">当日活跃</span></div></article>
-        <article class="card" data-type="platform"><span class="num">04 / SELF-HOSTED UI</span><h3><a href="https://github.com/open-webui/open-webui">Open WebUI</a></h3><p>用户友好的本地/多模型界面。高关注度说明私有部署、模型路由和团队入口仍是刚需。</p><div class="tags"><span class="tag hot">142,477 ★</span><span class="tag">近期维护</span></div></article>
-        <article class="card" data-type="agent"><span class="num">05 / EXTENSIBLE AGENT</span><h3><a href="https://github.com/block/goose">Block Goose</a></h3><p>可安装、执行、编辑、测试的开源代理，模型可替换。对产品团队的启发是把工具权限和运行记录设计成一等能力。</p><div class="tags"><span class="tag hot">49,949 ★</span><span class="tag">当日活跃</span></div></article>
-        <article class="card" data-type="infra"><span class="num">06 / MCP APPLICATIONS</span><h3><a href="https://github.com/mcp-use/mcp-use">mcp-use</a></h3><p>用于构建 ChatGPT、Claude 与 MCP server 的全栈框架。连接协议正从实验性 glue code 变成应用交付层。</p><div class="tags"><span class="tag hot">10,128 ★</span><span class="tag">当日活跃</span></div></article>
-        <article class="card" data-type="infra"><span class="num">07 / RESEARCH AGENT</span><h3><a href="https://github.com/langchain-ai/open_deep_research">Open Deep Research</a></h3><p>开放研究代理参考实现。适合拆解检索、规划、引用与审稿等可评测环节，不应直接等同于可靠事实生产线。</p><div class="tags"><span class="tag hot">11,764 ★</span><span class="tag">近期维护</span></div></article>
-        <article class="card" data-type="agent"><span class="num">08 / WEB AUTOMATION</span><h3><a href="https://github.com/browser-use/browser-use">browser-use</a></h3><p>把网页交互暴露给 AI agent。接近十万 star 表明浏览器是强需求接口，也意味着凭据、反自动化与审计风险更高。</p><div class="tags"><span class="tag hot">99,825 ★</span><span class="tag">近期维护</span></div></article>
-      </div></section>
-      <section><h2>工程判断</h2><div class="insights"><article class="insight"><h3>执行必须可回放</h3><p>代理价值不在“会调用工具”，而在权限、日志、重试和人工接管形成可审计闭环。</p></article><article class="insight"><h3>MCP 进入产品层</h3><p>协议支持本身不是护城河；可发现性、认证、配额和版本兼容才是交付质量。</p></article><article class="insight"><h3>先建评估，再扩自治</h3><p>研究和网页代理应先用任务集、引用核验和失败归因测量，再扩大可写权限。</p></article></div></section>
-      <section><h2>保留怀疑</h2><p class="notes">星标会受发布、媒体与营销影响；高 star 项目也可能存在维护压力、供应链风险和不稳定 API。任何引入都应检查许可证、近期开源活动、issue 响应、第三方依赖和最小权限沙箱。</p></section>
+    <section class="hero">
+      <div>
+        <div class="kicker">WEEKLY FIELD NOTES · ASIA/SHANGHAI</div>
+        <h1>热度很响，信号要拆。</h1>
+        <p>本期追踪 6 月下旬仍在活跃的 AI 仓库：个人常驻代理、skills/harness 方法论、生产工作流平台与网页上下文层。star 记录注意力，不记录可靠性；真正要看的是权限、发布节奏、运行审计和失败可解释性。</p>
+        <div class="actions"><a class="button" href="#projects">查看 8 个信号</a><a class="button alt" href="reports/ai-github-trends/2026-06-28.md">阅读 Markdown 报告</a></div>
+      </div>
+      <img class="signal" src="assets/ai-github-pulse.svg" alt="AI GitHub 趋势脉冲动态图">
+    </section>
+    <div class="ticker"><span>◆ PERSONAL AGENTS ◆ SKILLS FRAMEWORKS ◆ HARNESS OPERATING SYSTEMS ◆ WORKFLOW AUTOMATION ◆ WEB CONTEXT APIs ◆ FAKE STAR RISK ◆ PERSONAL AGENTS ◆ SKILLS FRAMEWORKS ◆ HARNESS OPERATING SYSTEMS ◆ WORKFLOW AUTOMATION ◆ WEB CONTEXT APIs ◆ FAKE STAR RISK ◆ </span></div>
+    <div class="wrap">
+      <section>
+        <div class="stats">
+          <div class="stat"><b>8</b><small>本期重点项目</small></div>
+          <div class="stat"><b>4</b><small>主要技术方向</small></div>
+          <div class="stat"><b>381k</b><small>最高 star 信号</small></div>
+          <div class="stat"><b>28 JUN</b><small>快照日期</small></div>
+        </div>
+        <h2>本轮读数</h2>
+        <p class="lede">AI 开源注意力正在从"模型聊天入口"转向可长期运行、可连接外部系统、可被团队治理的 agent 基础设施。最醒目的变化是 skills/harness 仓库快速升温，但这类仓库也最需要警惕 star 异常、供应链和方法论空心化。</p>
+      </section>
+      <section id="projects">
+        <h2>值得跟进</h2>
+        <p class="lede">star 为 2026-06-28 GitHub API/仓库页快照；趋势判断结合最近推送、release、README 信号与上期报告。由于 API 限流，本期不声称完整 7 日增星榜。</p>
+        <div class="filters" role="tablist">
+          <button class="filter" aria-selected="true" data-filter="all">全部</button>
+          <button class="filter" aria-selected="false" data-filter="agent">Agent</button>
+          <button class="filter" aria-selected="false" data-filter="harness">Harness</button>
+          <button class="filter" aria-selected="false" data-filter="platform">平台</button>
+          <button class="filter" aria-selected="false" data-filter="infra">数据层</button>
+        </div>
+        <div class="grid">
+          <article class="card" data-type="agent"><span class="num">01 / PERSONAL AGENT</span><h3><a href="https://github.com/openclaw/openclaw">OpenClaw</a></h3><p>跨消息通道的本地优先个人 AI 助手，强调 Gateway 控制面、常驻 daemon、配对和 DM 安全默认值。它代表个人代理从工具转向常驻入口。</p><div class="tags"><span class="tag hot">380,793 stars</span><span class="tag warn">异常热度</span></div></article>
+          <article class="card" data-type="harness"><span class="num">02 / SKILLS METHOD</span><h3><a href="https://github.com/obra/superpowers">Superpowers</a></h3><p>把 agentic skills 包装成软件开发方法论。值得关注的是团队如何把提示词资产升级为版本化技能、审查规则和协作协议。</p><div class="tags"><span class="tag hot">240,331 stars</span><span class="tag">6 月仍活跃</span></div></article>
+          <article class="card" data-type="harness"><span class="num">03 / HARNESS OS</span><h3><a href="https://github.com/affaan-m/ECC">ECC</a></h3><p>v2.0.0 将项目定位为 agent harness operating system，覆盖 skills、session adapters、MCP inventory、worktree lifecycle 和 orchestrators。</p><div class="tags"><span class="tag hot">222,803 stars</span><span class="tag">Jun 2026 release</span></div></article>
+          <article class="card" data-type="agent"><span class="num">04 / GROWING AGENT</span><h3><a href="https://github.com/NousResearch/hermes-agent">Hermes Agent</a></h3><p>定位为"the agent that grows with you"，处在 Codex、Claude、OpenAI、Anthropic、多代理和 OpenClaw 等生态关键词交叉处。</p><div class="tags"><span class="tag hot">204,605 stars</span><span class="tag">v0.17.0</span></div></article>
+          <article class="card" data-type="platform"><span class="num">05 / WORKFLOW PLATFORM</span><h3><a href="https://github.com/n8n-io/n8n">n8n</a></h3><p>400+ integrations、native AI capabilities、可视化 + 代码、自托管和企业权限，说明 agent 能力会优先进入成熟自动化平台。</p><div class="tags"><span class="tag hot">194,330 stars</span><span class="tag">2.27.4</span></div></article>
+          <article class="card" data-type="platform"><span class="num">06 / MCP WORKFLOWS</span><h3><a href="https://github.com/langflow-ai/langflow">Langflow</a></h3><p>可视化构建 AI agents/workflows，支持 API 与 MCP server 暴露、RAG、多 agent 编排和 LangSmith/Langfuse 观测。</p><div class="tags"><span class="tag hot">150,147 stars</span><span class="tag">1.10.1</span></div></article>
+          <article class="card" data-type="infra"><span class="num">07 / WEB CONTEXT</span><h3><a href="https://github.com/firecrawl/firecrawl">Firecrawl</a></h3><p>为 agent 提供 search、scrape、interact 的网页上下文 API，输出 Markdown、JSON、screenshots。网页数据质量会直接影响研究/RAG 可靠性。</p><div class="tags"><span class="tag hot">140,342 stars</span><span class="tag">6 月 28 推送</span></div></article>
+          <article class="card" data-type="harness"><span class="num">08 / LONG-HORIZON AGENT</span><h3><a href="https://github.com/bytedance/deer-flow">DeerFlow</a></h3><p>从 deep research 扩展到 SuperAgent harness，包含 sub-agents、memory、sandbox、skills、message gateway、TUI 和 CLI-backed providers。</p><div class="tags"><span class="tag hot">75,125 stars</span><span class="tag">v2 rewrite</span></div></article>
+        </div>
+      </section>
+      <section>
+        <h2>工程判断</h2>
+        <div class="insights">
+          <article class="insight"><h3>常驻代理要先管权限</h3><p>跨消息通道、网页和文件系统的 agent 必须默认最小权限、短期凭据、配对验证和可回放日志。</p></article>
+          <article class="insight"><h3>Skills 是代码资产</h3><p>提示词、MCP 配置和工作流 JSON 应版本化、review、CI 校验，并和业务环境隔离。</p></article>
+          <article class="insight"><h3>工作流平台更接近落地</h3><p>连接器、SSO、审计、模板和部署形态，往往比单点模型能力更能驱动真实采用。</p></article>
+          <article class="insight"><h3>star 需要降权</h3><p>高 star 是注意力，不是质量证明；异常增长尤其需要结合 fake-star 风险研究审查。</p></article>
+        </div>
+      </section>
+      <section>
+        <h2>保留怀疑</h2>
+        <p class="notes">本期多个仓库 star 数和创建时间组合非常醒目。报告把它们列为"值得跟踪的关注度信号"，不作为质量背书。任何引入都应继续检查许可证、提交历史、release 包、issue/PR 形态、依赖树、权限边界、安全默认值和长期维护能力。</p>
+      </section>
+      <section>
+        <h2>来源</h2>
+        <div class="sources">
+          <p><a href="https://github.com/openclaw/openclaw">OpenClaw</a></p>
+          <p><a href="https://github.com/obra/superpowers">Superpowers</a></p>
+          <p><a href="https://github.com/affaan-m/ECC">ECC</a></p>
+          <p><a href="https://github.com/NousResearch/hermes-agent">Hermes Agent</a></p>
+          <p><a href="https://github.com/n8n-io/n8n">n8n</a></p>
+          <p><a href="https://github.com/langflow-ai/langflow">Langflow</a></p>
+          <p><a href="https://github.com/firecrawl/firecrawl">Firecrawl</a></p>
+          <p><a href="https://github.com/bytedance/deer-flow">DeerFlow</a></p>
+          <p><a href="https://arxiv.org/abs/2602.09185">AIDev paper</a></p>
+          <p><a href="https://arxiv.org/abs/2412.13459">Fake stars paper</a></p>
+        </div>
+      </section>
     </div>
-  </main><footer class="foot">数据源：GitHub REST API（2026-06-21） · <a href="https://github.com/anejuxula20-ctrl/ai-skills-summarise">仓库</a> · <a href="reports/ai-github-trends/2026-06-21.md">报告与方法说明</a></footer>
-  <script>const b=document.querySelectorAll('.filter'),c=document.querySelectorAll('.card');b.forEach(x=>x.onclick=()=>{b.forEach(y=>y.setAttribute('aria-selected',y===x));c.forEach(y=>y.classList.toggle('hidden',x.dataset.filter!=='all'&&y.dataset.type!==x.dataset.filter))})</script>
-</body></html>
+  </main>
+  <footer class="foot">数据源：GitHub 仓库页与公开 API 快照（2026-06-28） · <a href="https://github.com/anejuxula20-ctrl/ai-skills-summarise">仓库</a> · <a href="reports/ai-github-trends/2026-06-28.md">报告与方法说明</a></footer>
+  <script>const b=document.querySelectorAll('.filter'),c=document.querySelectorAll('.card');b.forEach(x=>x.onclick=()=>{b.forEach(y=>y.setAttribute('aria-selected',String(y===x)));c.forEach(y=>y.classList.toggle('hidden',x.dataset.filter!=='all'&&y.dataset.type!==x.dataset.filter))})</script>
+</body>
+</html>
